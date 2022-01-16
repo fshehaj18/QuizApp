@@ -1,0 +1,30 @@
+<table class="table table-hover">
+
+    <thead class="thead-dark">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </thead>
+
+    <tbody>
+        
+        <tr  *ngFor="let tempUser of user">
+
+            <td > {{ tempUser.id}}</td>
+            <td > {{ tempUser.firstName}}</td>
+            <td > {{ tempUser.lastName}}</td>
+            <td> {{ tempUser.email}}</td>  
+            <td>
+                 
+                <button (click)="updateUser(tempUser.id)" class="btn btn-success btn-sm rounded-0" type="button" data-placement="top" title="Edit" ><fa-icon [icon]="faEdit"></fa-icon> </button>
+            
+            </td>
+          <td><button (click)="deleteUser(tempUser.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><fa-icon [icon]="faTrash"></fa-icon></button></td>
+          
+
+        </tr>
+    </tbody>
+</table>

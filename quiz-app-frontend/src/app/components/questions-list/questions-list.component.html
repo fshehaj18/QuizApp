@@ -1,0 +1,31 @@
+<mat-label>Choose category</mat-label>
+              <mat-select   name="tripReason" id="inputTripReason">
+                <mat-option value=" MEETING">MEETING</mat-option>
+                <mat-option value="PROJECT">PROJECT</mat-option>
+                
+                <mat-option value="WORKSHOP">WORKSHOP</mat-option>
+              <mat-option value="OTHER"> OTHER</mat-option>
+                 
+                </mat-select>
+
+                <mat-accordion *ngFor="let temp of questions">
+                    
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{ temp.name }}
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <ng-container *ngFor="let item of answersMap | keyvalue"  >
+                        <p style="color: green; font-weight: bold;">{{(item.value[temp.questionId])?.correct}} </p>
+                        <p>{{(item.value[temp.questionId])?.wrong1}}</p>
+                        <p>{{(item.value[temp.questionId])?.wrong2}}</p>
+                        <p>{{(item.value[temp.questionId])?.wrong3}}</p>
+
+                      </ng-container>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                  <a>
+                    <button  class="btn btn-success btn-sm rounded-0" (click)="onSubmit()" type="button" data-placement="top" title="Add question" ><fa-icon [icon]="faPlus"></fa-icon> Add question </button>
+                  </a>

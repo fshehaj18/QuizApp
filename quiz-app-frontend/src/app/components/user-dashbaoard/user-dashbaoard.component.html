@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="container">
+    <h1>Choose category</h1>
+    <div class="card" style="margin: 100px 100px 0px 100px; padding: 20px;">
+        <div class="row row-cols-1 row-cols-3" >
+    <div class="col mb-4"  *ngFor="let c of category">
+		<div class="{{color[c.categoryId%3]}}" style="height: 220px; cursor: pointer;" >
+		  <div class="card-body" (click)="startQuiz(c.categoryId)">
+            <table> <tr> <th style="width: 50%;"><h1> </h1> </th> <th style="width: auto;"><fa-icon [icon]="faMap" size="7x"></fa-icon> </th> </table>
+                <br>
+             <strong> <a  class="text-white no-underline">{{ c.name }} </a> </strong>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
