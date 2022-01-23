@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="container mt-4" >
+    <h1 style=" font-size: xx-large;">Choose category</h1>
+    <div class="card" style="margin: 100px 100px 0px 100px; padding: 20px;">
+        <div class="row row-cols-1 row-cols-3" >
+    <div class="col mb-4"  *ngFor="let c of category;let i=index;">
+		<div class="{{color[i%(color.length)]}}" style="height: 220px; cursor: pointer;" >
+		  <div class="card-body" (click)="startQuiz(c.name, c.categoryId)">
+            <table> <tr> <th style="width: 50%;"><h1> </h1> </th> <th style="width: auto;"><fa-icon [icon]="faIcons[i%faIcons.length]" size="8x"></fa-icon> </th> </table>
+                <br>
+             <strong> <a  class="text-white no-underline" style="font-size: 17px;">{{ c.name }} </a> </strong>
+              </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

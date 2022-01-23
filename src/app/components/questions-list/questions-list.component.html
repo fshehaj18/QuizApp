@@ -1,0 +1,40 @@
+ <app-header></app-header>
+<form>
+  <div class="container column  row-cols-2">
+    <mat-form-field appearance="fill"> 
+      <mat-label>Category</mat-label> 
+  <mat-select   name="categories" id="inputName" [(ngModel)]="categoryName" value>
+                <ng-container *ngFor="let c of categories">
+                <mat-option class="form-control" value="{{c.name}}" >{{c.name}}</mat-option>
+              </ng-container>   
+                </mat-select>
+              </mat-form-field> 
+                <button class="btn btn-primary mt-4 ml-2" type="submit" (click)="search()" >Search</button>
+              
+              </div>
+            </form>
+<div class="mt-4 container">
+                <mat-accordion *ngFor="let temp of questions" >
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{ temp.name }}
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                    
+                         <p style="color: green; font-weight: bold;">{{answersMap?.get(temp.questionId)?.correct}} </p>
+                        <p style="color: red;">{{answersMap?.get(temp.questionId)?.wrong1}}</p>
+                        <p style="color: red;">{{answersMap?.get(temp.questionId)?.wrong2}}</p>
+                        <p style="color: red;">{{answersMap?.get(temp.questionId)?.wrong3}}</p> 
+                      <button class="btn btn-danger" (click)="delete(temp.questionId)">Delete</button>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                  <a>
+                    <button  class="btn btn-success btn-sm rounded-0 mr-4 mt-2" (click)="onSubmit()" type="button" data-placement="top" title="Add question" ><fa-icon [icon]="faPlus"></fa-icon> Add question </button>
+                  </a>
+
+                  <a>
+                    <button  class="btn btn-success btn-sm rounded-0 mt-2" (click)="addCategory()" type="button" data-placement="top" title="Add category" ><fa-icon [icon]="faPlus"></fa-icon> Add category </button>
+                  </a>
+                </div> 

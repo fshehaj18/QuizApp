@@ -1,0 +1,75 @@
+<div class="mb-2 container ">
+    <h1>{{category}}</h1>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="timer">
+        <fa-icon [icon]="faClock" ></fa-icon> {{math.floor(timer/60)}} : {{timer%60}}
+      </div>
+      
+          <form >
+    <div class="card  lighten-1"  style="margin: 100px 100px 0px 100px; padding: 20px;" *ngFor="let q of questions; let pos=index">
+      
+        <div class="row row-cols-1 row-cols-md-1  bg-light" >
+    <div class="col mb-4 text-red"><h2>{{q.name}}</h2>
+		  <div class="options"  >
+        <ng-container *ngFor="let item of answersMap | keyvalue;let i=index;trackBy:trackByIdx">
+          
+          <ng-container *ngIf="i==pos">
+            <div class="card bg-light mb-4"  style="cursor: pointer;"  >
+               <ng-container *ngIf="randomNumber[pos]==0"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.correct}}">{{ answersMap.get(q.questionId)?.correct }} <fa-icon *ngIf="toggle" style="color: green;" [icon]="faCheck"></fa-icon></li></ng-container>
+               <ng-container *ngIf="randomNumber[pos]==1"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong1}}">{{ answersMap.get(q.questionId)?.wrong1}} <fa-icon *ngIf="toggle" style="color: red;" [icon]="faTimes"></fa-icon></li></ng-container>
+               <ng-container *ngIf="randomNumber[pos]==2"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong2}}">{{ answersMap.get(q.questionId)?.wrong2}} <fa-icon *ngIf="toggle" style="color: red;" [icon]="faTimes"></fa-icon></li></ng-container>
+               <ng-container *ngIf="randomNumber[pos]==3"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong3}}">{{ answersMap.get(q.questionId)?.wrong3}} <fa-icon *ngIf="toggle" style="color: red;" [icon]="faTimes"></fa-icon></li></ng-container>
+            
+            </div> 
+          </ng-container> 
+           </ng-container>
+           <ng-container *ngFor="let item of answersMap | keyvalue;let i=index;trackBy:trackByIdx;" >
+            <ng-container *ngIf="i==pos">
+              
+              <div class="card bg-light mb-4"  style="cursor: pointer;">
+                 <ng-container *ngIf="randomNumber[pos]==1"><li class="list-group-item" ><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.correct}}">
+                  {{ answersMap.get(q.questionId)?.correct}}<fa-icon *ngIf="toggle" style="color: green;" [icon]="faCheck"></fa-icon></li></ng-container>
+                 <ng-container *ngIf="randomNumber[pos]==0"><li  class="list-group-item"><input type="radio" [(ngModel)]="submittedAnswers[pos]  " name="{{i}}" value="{{ answersMap.get(q.questionId)?.wrong1}}">{{ answersMap.get(q.questionId)?.wrong1}}</li></ng-container>
+                 <ng-container *ngIf="randomNumber[pos]==3"><li  class="list-group-item"><input type="radio" [(ngModel)]="submittedAnswers[pos]  " name="{{i}}" value="{{ answersMap.get(q.questionId)?.wrong2}}">{{ answersMap.get(q.questionId)?.wrong2}}</li></ng-container>
+                 <ng-container *ngIf="randomNumber[pos]==2"><li  class="list-group-item"><input type="radio" [(ngModel)]="submittedAnswers[pos]  " name="{{i}}" value="{{ answersMap.get(q.questionId)?.wrong3}}">{{ answersMap.get(q.questionId)?.wrong3}}</li></ng-container>
+              
+              </div> 
+            </ng-container> 
+             </ng-container>
+             <ng-container *ngFor="let item of answersMap | keyvalue;let i=index;trackBy:trackByIdx">
+              <ng-container *ngIf="i==pos">
+                <div class="card bg-light mb-4"  style="cursor: pointer;"  >
+    
+                   <ng-container *ngIf="randomNumber[pos]==2"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.correct}}" value="{{ (item.value[q.questionId]?.correct)}}">{{ answersMap.get(q.questionId)?.correct}} <fa-icon *ngIf="toggle" style="color: green;" [icon]="faCheck"></fa-icon></li></ng-container>
+                   <ng-container *ngIf="randomNumber[pos]==3"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong1}}"  value="{{ (item.value[q.questionId]?.wrong1)}}">{{ answersMap.get(q.questionId)?.wrong1}}</li></ng-container>
+                   <ng-container *ngIf="randomNumber[pos]==0"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong2}}"  value="{{ (item.value[q.questionId]?.wrong2)}}">{{ answersMap.get(q.questionId)?.wrong2}}</li></ng-container>
+                   <ng-container *ngIf="randomNumber[pos]==1"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong3}}"  value="{{ (item.value[q.questionId]?.wrong3)}}">{{ answersMap.get(q.questionId)?.wrong3}}</li></ng-container>
+                
+                </div> 
+              </ng-container> 
+               </ng-container>
+               <ng-container *ngFor="let item of answersMap | keyvalue;let i=index;trackBy:trackByIdx">
+                <ng-container *ngIf="i==pos">
+                  <div class="card bg-light mb-4"  style="cursor: pointer;"  >
+                     <ng-container *ngIf="randomNumber[pos]==3"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.correct}}">{{ answersMap.get(q.questionId)?.correct}}
+                       <fa-icon *ngIf="toggle" style="color: green;" [icon]="faCheck"></fa-icon></li></ng-container>
+                     <ng-container *ngIf="randomNumber[pos]==2"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong1}}">{{ answersMap.get(q.questionId)?.wrong1}}</li></ng-container>
+                     <ng-container *ngIf="randomNumber[pos]==1"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong2}}">{{ answersMap.get(q.questionId)?.wrong2}}</li></ng-container>
+                     <ng-container *ngIf="randomNumber[pos]==0"><li class="list-group-item"><input type="radio" name="{{i}}" [(ngModel)]="submittedAnswers[pos]  " value="{{ answersMap.get(q.questionId)?.wrong3}}">{{ answersMap.get(q.questionId)?.wrong3}}</li></ng-container>
+                  
+                  </div> 
+                </ng-container> 
+                 </ng-container>
+           
+           </div>   
+              
+              
+          </div>
+
+    </div>
+</div>
+<button class="btn btn-primary" type="submit" style=" margin: 50px;left: 44%; position: relative;
+" (click)="onSubmit()">Submit</button></form>
+</div>
